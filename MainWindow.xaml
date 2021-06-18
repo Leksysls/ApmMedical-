@@ -1,0 +1,23 @@
+﻿<Window x:Class="ApmMedical.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ApmMedical"
+        mc:Ignorable="d"
+       Title="{Binding ElementName=MainFrame, Path=Content.Title}" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+            <RowDefinition Height="15"/>
+        </Grid.RowDefinitions>
+        
+        <Rectangle Fill="{StaticResource MainColorButton}"/>
+        <Rectangle Grid.Row="2" Fill="{StaticResource MainColorButton}"/>
+        <Button Style="{StaticResource BackButton}" x:Name="BackButton" Content="Назад" Click="BackButton_Click"   />
+        <Image Source="./Resources/img/logo.png" Style="{StaticResource Image_logo}"/>
+        <Label Grid.Row="0" Content="{Binding ElementName=MainFrame, Path=Content.Title}" Style="{StaticResource MainLebel}"/>
+        <Frame Grid.Row="1"  x:Name="MainFrame" ContentRendered="MainFrame_ContentRendered" Navigated="MainFrame_Navigated" NavigationUIVisibility="Hidden" />
+    </Grid>
+</Window>

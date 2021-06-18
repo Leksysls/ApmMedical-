@@ -1,0 +1,137 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ApmMedical.Resources">
+
+    <Style x:Key="BackButton">
+        <Setter Property="Control.HorizontalAlignment" Value="Right"/>
+        <Setter Property="Control.VerticalAlignment" Value="Center"/>
+        <Setter Property="Control.Width" Value="70"/>
+        <Setter Property="Control.Height" Value="30"/>
+        <Setter Property="ItemsControl.Margin" Value="5"/>
+        <Setter Property="ItemsControl.Background" Value="#adddf7"/>
+
+    </Style>
+    <Style x:Key="Image_logo">
+        <Setter Property="Control.Width" Value="60"/>
+        <Setter Property="Control.HorizontalAlignment" Value="Left"/>
+        <Setter Property="Control.VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <SolidColorBrush x:Key="MainColorButton" Color="#feeab9"/>
+
+    <Style x:Key="FieldInput">
+        <Setter Property="Control.Height" Value="20"/>
+    </Style>
+
+    <Style TargetType="TextBlock">
+        <Setter Property="ItemsControl.HorizontalAlignment" Value="Center"/>
+        <Setter Property="ItemsControl.Margin" Value="5"/>
+        <Setter Property="ItemsControl.FontWeight" Value="Bold"/>
+    </Style>
+
+    
+
+    <Style x:Key="AuthButton">
+        <Setter Property="ItemsControl.Margin" Value="5"/>
+        <Setter Property="ItemsControl.Background" Value="#adddf7"/>
+        <Setter Property="ItemsControl.Width" Value="100"/>
+    </Style>
+    <Style x:Key="MainLebel">
+        <Setter Property="ItemsControl.Margin" Value="5"/>
+        <Setter Property="ItemsControl.HorizontalAlignment" Value="Center"/>
+        <Setter Property="ItemsControl.VerticalAlignment" Value="Center"/>
+        <Setter Property="ItemsControl.FontSize" Value="15pt"/>
+    </Style>
+
+    <Style x:Key="MainButtonMenu">
+        <Setter Property="ItemsControl.Width" Value="170"/>
+        <Setter Property="ItemsControl.Height" Value="30"/>
+        <Setter Property="ItemsControl.Margin" Value="15px"/>
+        <Setter Property="ItemsControl.Background" Value="#adddf7"/>
+    </Style>
+
+    <Style x:Key="PanelForImg">
+        <Setter Property="ItemsControl.Width" Value="500"/>
+        <Setter Property="ItemsControl.Height" Value="350"/>
+        <Setter Property="ItemsControl.Margin" Value="170,0,0,0"/>
+    </Style>
+    <Style x:Key="PanelImg">
+        <Setter Property="ItemsControl.Width" Value="300"/>
+        <Setter Property="ItemsControl.Height" Value="330"/>
+        <Setter Property="ItemsControl.Margin" Value="0,0,0,20"/>
+    </Style>
+
+    <Style x:Key="InputBox">
+        <Setter Property="ItemsControl.Width" Value="200"/>
+        <Setter Property="ItemsControl.Height" Value="20"/>
+        <Setter Property="ItemsControl.Margin" Value="5"/>
+    </Style>
+
+    <Style x:Key="RegButton">
+        <Setter Property="ItemsControl.Margin" Value="5"/>
+        <Setter Property="ItemsControl.Background" Value="#adddf7"/>
+        <Setter Property="ItemsControl.Width" Value="120"/>
+    </Style>
+
+    <Style x:Key="ComboRegist">
+        <Setter Property="ItemsControl.Height" Value="20"/>
+    </Style>
+
+    <Style x:Key="HorizontalStackPanel" TargetType="StackPanel">
+
+        <Setter Property="ItemsControl.HorizontalAlignment" Value="Center"/>
+        <Setter Property="ItemsControl.Margin" Value="5"/>
+    </Style>
+
+    <Style x:Key="MainStackPanel" TargetType="StackPanel">
+        <Setter Property="ItemsControl.HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="ItemsControl.VerticalAlignment" Value="Center"></Setter>
+    </Style>
+    <Style x:Key="SideInfoTextBlock" TargetType="TextBlock">
+        <Setter Property="ItemsControl.FontSize" Value="15"/>
+        <Setter Property="ItemsControl.Width" Value="150"/>
+    </Style>
+    <Style x:Key="MainTextBox" TargetType="TextBox">
+        <Setter Property="ItemsControl.FontSize" Value="15"/>
+        <Setter Property="ItemsControl.Width" Value="200"/>
+        <Setter Property="ItemsControl.Margin" Value="3"/>
+        <Setter Property="ItemsControl.BorderBrush" Value="Black"/>
+        <Setter Property="ItemsControl.Height" Value="30"/>
+    </Style>
+    <Style x:Key="MainPasswordBox" TargetType="PasswordBox">
+        <Setter Property="ItemsControl.FontSize" Value="15"/>
+        <Setter Property="ItemsControl.Width" Value="200"/>
+        <Setter Property="ItemsControl.Margin" Value="3"/>
+        <Setter Property="ItemsControl.BorderBrush" Value="Black"/>
+    </Style>
+    <Style x:Key="MainComboBox" TargetType="ComboBox">
+        <Setter Property="ItemsControl.FontSize" Value="12"/>
+        <Setter Property="ItemsControl.Width" Value="150"/>
+        <Setter Property="ItemsControl.Margin" Value="3"/>
+        <Setter Property="ItemsControl.Height" Value="35"/>
+    </Style>
+
+    <Style x:Key="MainInfoTextBlock" TargetType="TextBlock">
+        <Setter Property="ItemsControl.FontSize" Value="15"/>
+        <Setter Property="ItemsControl.HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="DataGridButton">
+        <Setter Property="ItemsControl.Width" Value="70"/>
+        <Setter Property="ItemsControl.Background" Value="#adddf7"/>
+    </Style>
+
+    <Style x:Key="AboveDataGridButton">
+        <Setter Property="ItemsControl.Width" Value="166"/>
+        <Setter Property="ItemsControl.Background" Value="#adddf7"/>
+        <Setter Property="ItemsControl.Margin" Value="3"/>
+        <Setter Property="ItemsControl.Height" Value="30"/>
+        <Setter Property="ItemsControl.FontSize" Value="12"/>
+    </Style>
+    <Style x:Key="MainDatePicker" TargetType="DatePicker">
+        <Setter Property="ItemsControl.FontSize" Value="15"/>
+        <Setter Property="ItemsControl.Width" Value="150"/>
+        <Setter Property="ItemsControl.Margin" Value="3"/>
+    </Style>
+
+</ResourceDictionary>

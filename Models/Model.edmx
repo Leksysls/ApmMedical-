@@ -1,0 +1,817 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище ApmMedicModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bloods">
+          <Key>
+            <PropertyRef Name="id_blood" />
+          </Key>
+          <Property Name="id_blood" Type="int" Nullable="false" />
+          <Property Name="name_blood" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Card_patiet">
+          <Key>
+            <PropertyRef Name="id_card" />
+          </Key>
+          <Property Name="id_card" Type="int" Nullable="false" />
+          <Property Name="id_doctor" Type="int" />
+          <Property Name="id_patient" Type="int" />
+          <Property Name="id_disease" Type="int" />
+          <Property Name="id_temp" Type="int" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="id_department" />
+          </Key>
+          <Property Name="id_department" Type="int" Nullable="false" />
+          <Property Name="name_department" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="disease">
+          <Key>
+            <PropertyRef Name="id_disease" />
+          </Key>
+          <Property Name="id_disease" Type="int" Nullable="false" />
+          <Property Name="disease" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Info_doctors">
+          <Key>
+            <PropertyRef Name="id_doctor" />
+          </Key>
+          <Property Name="id_doctor" Type="int" Nullable="false" />
+          <Property Name="office_doctor" Type="int" Nullable="false" />
+          <Property Name="id_reception" Type="int" Nullable="false" />
+          <Property Name="id_user" Type="int" />
+          <Property Name="id_post" Type="int" Nullable="false" />
+          <Property Name="id_department" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Info_patient">
+          <Key>
+            <PropertyRef Name="id_patient" />
+          </Key>
+          <Property Name="id_patient" Type="int" Nullable="false" />
+          <Property Name="fitstname_patient" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="surname_patient" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="lastname_patient" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="year_patient" Type="date" Nullable="false" />
+          <Property Name="id_sex" Type="int" />
+          <Property Name="id_blood" Type="int" />
+        </EntityType>
+        <EntityType Name="Info_reception">
+          <Key>
+            <PropertyRef Name="id_reception" />
+          </Key>
+          <Property Name="id_reception" Type="int" Nullable="false" />
+          <Property Name="reception_schedule" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="id_post" />
+          </Key>
+          <Property Name="id_post" Type="int" Nullable="false" />
+          <Property Name="name_post" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="int" Nullable="false" />
+          <Property Name="name_role" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Sex">
+          <Key>
+            <PropertyRef Name="id_sex" />
+          </Key>
+          <Property Name="id_sex" Type="int" Nullable="false" />
+          <Property Name="name_sex" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Temperature_sheet">
+          <Key>
+            <PropertyRef Name="id_temp" />
+          </Key>
+          <Property Name="id_temp" Type="int" Nullable="false" />
+          <Property Name="Id_patient" Type="int" />
+          <Property Name="id_doctor" Type="int" />
+          <Property Name="temperature" Type="nchar" MaxLength="10" />
+          <Property Name="pressure" Type="nchar" MaxLength="10" />
+          <Property Name="pulse_rate" Type="nchar" MaxLength="10" />
+          <Property Name="weight" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_role" Type="int" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="user_firstname" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_lastname" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_othername" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Card_patiet_disease">
+          <End Role="disease" Type="Self.disease" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Card_patiet" Type="Self.Card_patiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="disease">
+              <PropertyRef Name="id_disease" />
+            </Principal>
+            <Dependent Role="Card_patiet">
+              <PropertyRef Name="id_disease" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Card_patiet_Info_doctors">
+          <End Role="Info_doctors" Type="Self.Info_doctors" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Card_patiet" Type="Self.Card_patiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Info_doctors">
+              <PropertyRef Name="id_doctor" />
+            </Principal>
+            <Dependent Role="Card_patiet">
+              <PropertyRef Name="id_doctor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Card_patiet_Info_patient">
+          <End Role="Info_patient" Type="Self.Info_patient" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Card_patiet" Type="Self.Card_patiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Info_patient">
+              <PropertyRef Name="id_patient" />
+            </Principal>
+            <Dependent Role="Card_patiet">
+              <PropertyRef Name="id_patient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Card_patiet_Temperature_sheet">
+          <End Role="Temperature_sheet" Type="Self.Temperature_sheet" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Card_patiet" Type="Self.Card_patiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Temperature_sheet">
+              <PropertyRef Name="id_temp" />
+            </Principal>
+            <Dependent Role="Card_patiet">
+              <PropertyRef Name="id_temp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_doctors_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Info_doctors" Type="Self.Info_doctors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="id_department" />
+            </Principal>
+            <Dependent Role="Info_doctors">
+              <PropertyRef Name="id_department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_doctors_Info_reception">
+          <End Role="Info_reception" Type="Self.Info_reception" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Info_doctors" Type="Self.Info_doctors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Info_reception">
+              <PropertyRef Name="id_reception" />
+            </Principal>
+            <Dependent Role="Info_doctors">
+              <PropertyRef Name="id_reception" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_doctors_Posts">
+          <End Role="Posts" Type="Self.Posts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Info_doctors" Type="Self.Info_doctors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posts">
+              <PropertyRef Name="id_post" />
+            </Principal>
+            <Dependent Role="Info_doctors">
+              <PropertyRef Name="id_post" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_doctors_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Info_doctors" Type="Self.Info_doctors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Info_doctors">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_patient_Bloods">
+          <End Role="Bloods" Type="Self.Bloods" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Info_patient" Type="Self.Info_patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bloods">
+              <PropertyRef Name="id_blood" />
+            </Principal>
+            <Dependent Role="Info_patient">
+              <PropertyRef Name="id_blood" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_patient_Sex">
+          <End Role="Sex" Type="Self.Sex" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Info_patient" Type="Self.Info_patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sex">
+              <PropertyRef Name="id_sex" />
+            </Principal>
+            <Dependent Role="Info_patient">
+              <PropertyRef Name="id_sex" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_role">
+          <End Role="role" Type="Self.role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ApmMedicModelContainer">
+          <EntitySet Name="Bloods" EntityType="Self.Bloods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Card_patiet" EntityType="Self.Card_patiet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="disease" EntityType="Self.disease" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Info_doctors" EntityType="Self.Info_doctors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Info_patient" EntityType="Self.Info_patient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Info_reception" EntityType="Self.Info_reception" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="role" EntityType="Self.role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sex" EntityType="Self.Sex" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Temperature_sheet" EntityType="Self.Temperature_sheet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Card_patiet_disease" Association="Self.FK_Card_patiet_disease">
+            <End Role="disease" EntitySet="disease" />
+            <End Role="Card_patiet" EntitySet="Card_patiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Card_patiet_Info_doctors" Association="Self.FK_Card_patiet_Info_doctors">
+            <End Role="Info_doctors" EntitySet="Info_doctors" />
+            <End Role="Card_patiet" EntitySet="Card_patiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Card_patiet_Info_patient" Association="Self.FK_Card_patiet_Info_patient">
+            <End Role="Info_patient" EntitySet="Info_patient" />
+            <End Role="Card_patiet" EntitySet="Card_patiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Card_patiet_Temperature_sheet" Association="Self.FK_Card_patiet_Temperature_sheet">
+            <End Role="Temperature_sheet" EntitySet="Temperature_sheet" />
+            <End Role="Card_patiet" EntitySet="Card_patiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_doctors_Departments" Association="Self.FK_Info_doctors_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Info_doctors" EntitySet="Info_doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_doctors_Info_reception" Association="Self.FK_Info_doctors_Info_reception">
+            <End Role="Info_reception" EntitySet="Info_reception" />
+            <End Role="Info_doctors" EntitySet="Info_doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_doctors_Posts" Association="Self.FK_Info_doctors_Posts">
+            <End Role="Posts" EntitySet="Posts" />
+            <End Role="Info_doctors" EntitySet="Info_doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_doctors_Users" Association="Self.FK_Info_doctors_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Info_doctors" EntitySet="Info_doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_patient_Bloods" Association="Self.FK_Info_patient_Bloods">
+            <End Role="Bloods" EntitySet="Bloods" />
+            <End Role="Info_patient" EntitySet="Info_patient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_patient_Sex" Association="Self.FK_Info_patient_Sex">
+            <End Role="Sex" EntitySet="Sex" />
+            <End Role="Info_patient" EntitySet="Info_patient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_role" Association="Self.FK_Users_role">
+            <End Role="role" EntitySet="role" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ApmMedicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ApmMedicEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bloods" EntityType="ApmMedicModel.Bloods" />
+          <EntitySet Name="Card_patiet" EntityType="ApmMedicModel.Card_patiet" />
+          <EntitySet Name="Departments" EntityType="ApmMedicModel.Departments" />
+          <EntitySet Name="disease" EntityType="ApmMedicModel.disease" />
+          <EntitySet Name="Info_doctors" EntityType="ApmMedicModel.Info_doctors" />
+          <EntitySet Name="Info_patient" EntityType="ApmMedicModel.Info_patient" />
+          <EntitySet Name="Info_reception" EntityType="ApmMedicModel.Info_reception" />
+          <EntitySet Name="Posts" EntityType="ApmMedicModel.Posts" />
+          <EntitySet Name="role" EntityType="ApmMedicModel.role" />
+          <EntitySet Name="Sex" EntityType="ApmMedicModel.Sex" />
+          <EntitySet Name="Temperature_sheet" EntityType="ApmMedicModel.Temperature_sheet" />
+          <EntitySet Name="Users" EntityType="ApmMedicModel.Users" />
+          <AssociationSet Name="FK_Info_patient_Bloods" Association="ApmMedicModel.FK_Info_patient_Bloods">
+            <End Role="Bloods" EntitySet="Bloods" />
+            <End Role="Info_patient" EntitySet="Info_patient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Card_patiet_disease" Association="ApmMedicModel.FK_Card_patiet_disease">
+            <End Role="disease" EntitySet="disease" />
+            <End Role="Card_patiet" EntitySet="Card_patiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Card_patiet_Info_doctors" Association="ApmMedicModel.FK_Card_patiet_Info_doctors">
+            <End Role="Info_doctors" EntitySet="Info_doctors" />
+            <End Role="Card_patiet" EntitySet="Card_patiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Card_patiet_Info_patient" Association="ApmMedicModel.FK_Card_patiet_Info_patient">
+            <End Role="Info_patient" EntitySet="Info_patient" />
+            <End Role="Card_patiet" EntitySet="Card_patiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Card_patiet_Temperature_sheet" Association="ApmMedicModel.FK_Card_patiet_Temperature_sheet">
+            <End Role="Temperature_sheet" EntitySet="Temperature_sheet" />
+            <End Role="Card_patiet" EntitySet="Card_patiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_doctors_Departments" Association="ApmMedicModel.FK_Info_doctors_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Info_doctors" EntitySet="Info_doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_doctors_Info_reception" Association="ApmMedicModel.FK_Info_doctors_Info_reception">
+            <End Role="Info_reception" EntitySet="Info_reception" />
+            <End Role="Info_doctors" EntitySet="Info_doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_doctors_Posts" Association="ApmMedicModel.FK_Info_doctors_Posts">
+            <End Role="Posts" EntitySet="Posts" />
+            <End Role="Info_doctors" EntitySet="Info_doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_doctors_Users" Association="ApmMedicModel.FK_Info_doctors_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Info_doctors" EntitySet="Info_doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_patient_Sex" Association="ApmMedicModel.FK_Info_patient_Sex">
+            <End Role="Sex" EntitySet="Sex" />
+            <End Role="Info_patient" EntitySet="Info_patient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_role" Association="ApmMedicModel.FK_Users_role">
+            <End Role="role" EntitySet="role" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Bloods">
+          <Key>
+            <PropertyRef Name="id_blood" />
+          </Key>
+          <Property Name="id_blood" Type="Int32" Nullable="false" />
+          <Property Name="name_blood" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Info_patient" Relationship="ApmMedicModel.FK_Info_patient_Bloods" FromRole="Bloods" ToRole="Info_patient" />
+        </EntityType>
+        <EntityType Name="Card_patiet">
+          <Key>
+            <PropertyRef Name="id_card" />
+          </Key>
+          <Property Name="id_card" Type="Int32" Nullable="false" />
+          <Property Name="id_doctor" Type="Int32" />
+          <Property Name="id_patient" Type="Int32" />
+          <Property Name="id_disease" Type="Int32" />
+          <Property Name="id_temp" Type="Int32" />
+          <NavigationProperty Name="disease" Relationship="ApmMedicModel.FK_Card_patiet_disease" FromRole="Card_patiet" ToRole="disease" />
+          <NavigationProperty Name="Info_doctors" Relationship="ApmMedicModel.FK_Card_patiet_Info_doctors" FromRole="Card_patiet" ToRole="Info_doctors" />
+          <NavigationProperty Name="Info_patient" Relationship="ApmMedicModel.FK_Card_patiet_Info_patient" FromRole="Card_patiet" ToRole="Info_patient" />
+          <NavigationProperty Name="Temperature_sheet" Relationship="ApmMedicModel.FK_Card_patiet_Temperature_sheet" FromRole="Card_patiet" ToRole="Temperature_sheet" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="id_department" />
+          </Key>
+          <Property Name="id_department" Type="Int32" Nullable="false" />
+          <Property Name="name_department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Info_doctors" Relationship="ApmMedicModel.FK_Info_doctors_Departments" FromRole="Departments" ToRole="Info_doctors" />
+        </EntityType>
+        <EntityType Name="disease">
+          <Key>
+            <PropertyRef Name="id_disease" />
+          </Key>
+          <Property Name="id_disease" Type="Int32" Nullable="false" />
+          <Property Name="disease1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Card_patiet" Relationship="ApmMedicModel.FK_Card_patiet_disease" FromRole="disease" ToRole="Card_patiet" />
+        </EntityType>
+        <EntityType Name="Info_doctors">
+          <Key>
+            <PropertyRef Name="id_doctor" />
+          </Key>
+          <Property Name="id_doctor" Type="Int32" Nullable="false" />
+          <Property Name="office_doctor" Type="Int32" Nullable="false" />
+          <Property Name="id_reception" Type="Int32" Nullable="false" />
+          <Property Name="id_user" Type="Int32" />
+          <Property Name="id_post" Type="Int32" Nullable="false" />
+          <Property Name="id_department" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Card_patiet" Relationship="ApmMedicModel.FK_Card_patiet_Info_doctors" FromRole="Info_doctors" ToRole="Card_patiet" />
+          <NavigationProperty Name="Departments" Relationship="ApmMedicModel.FK_Info_doctors_Departments" FromRole="Info_doctors" ToRole="Departments" />
+          <NavigationProperty Name="Info_reception" Relationship="ApmMedicModel.FK_Info_doctors_Info_reception" FromRole="Info_doctors" ToRole="Info_reception" />
+          <NavigationProperty Name="Posts" Relationship="ApmMedicModel.FK_Info_doctors_Posts" FromRole="Info_doctors" ToRole="Posts" />
+          <NavigationProperty Name="Users" Relationship="ApmMedicModel.FK_Info_doctors_Users" FromRole="Info_doctors" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Info_patient">
+          <Key>
+            <PropertyRef Name="id_patient" />
+          </Key>
+          <Property Name="id_patient" Type="Int32" Nullable="false" />
+          <Property Name="fitstname_patient" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="surname_patient" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lastname_patient" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="year_patient" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="id_sex" Type="Int32" />
+          <Property Name="id_blood" Type="Int32" />
+          <NavigationProperty Name="Bloods" Relationship="ApmMedicModel.FK_Info_patient_Bloods" FromRole="Info_patient" ToRole="Bloods" />
+          <NavigationProperty Name="Card_patiet" Relationship="ApmMedicModel.FK_Card_patiet_Info_patient" FromRole="Info_patient" ToRole="Card_patiet" />
+          <NavigationProperty Name="Sex" Relationship="ApmMedicModel.FK_Info_patient_Sex" FromRole="Info_patient" ToRole="Sex" />
+        </EntityType>
+        <EntityType Name="Info_reception">
+          <Key>
+            <PropertyRef Name="id_reception" />
+          </Key>
+          <Property Name="id_reception" Type="Int32" Nullable="false" />
+          <Property Name="reception_schedule" Type="Time" Precision="7" />
+          <NavigationProperty Name="Info_doctors" Relationship="ApmMedicModel.FK_Info_doctors_Info_reception" FromRole="Info_reception" ToRole="Info_doctors" />
+        </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="id_post" />
+          </Key>
+          <Property Name="id_post" Type="Int32" Nullable="false" />
+          <Property Name="name_post" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Info_doctors" Relationship="ApmMedicModel.FK_Info_doctors_Posts" FromRole="Posts" ToRole="Info_doctors" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="Int32" Nullable="false" />
+          <Property Name="name_role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="ApmMedicModel.FK_Users_role" FromRole="role" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Sex">
+          <Key>
+            <PropertyRef Name="id_sex" />
+          </Key>
+          <Property Name="id_sex" Type="Int32" Nullable="false" />
+          <Property Name="name_sex" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Info_patient" Relationship="ApmMedicModel.FK_Info_patient_Sex" FromRole="Sex" ToRole="Info_patient" />
+        </EntityType>
+        <EntityType Name="Temperature_sheet">
+          <Key>
+            <PropertyRef Name="id_temp" />
+          </Key>
+          <Property Name="id_temp" Type="Int32" Nullable="false" />
+          <Property Name="Id_patient" Type="Int32" />
+          <Property Name="id_doctor" Type="Int32" />
+          <Property Name="temperature" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="pressure" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="pulse_rate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="weight" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Card_patiet" Relationship="ApmMedicModel.FK_Card_patiet_Temperature_sheet" FromRole="Temperature_sheet" ToRole="Card_patiet" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_role" Type="Int32" Nullable="false" />
+          <Property Name="login" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_othername" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Info_doctors" Relationship="ApmMedicModel.FK_Info_doctors_Users" FromRole="Users" ToRole="Info_doctors" />
+          <NavigationProperty Name="role" Relationship="ApmMedicModel.FK_Users_role" FromRole="Users" ToRole="role" />
+        </EntityType>
+        <Association Name="FK_Info_patient_Bloods">
+          <End Type="ApmMedicModel.Bloods" Role="Bloods" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ApmMedicModel.Info_patient" Role="Info_patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bloods">
+              <PropertyRef Name="id_blood" />
+            </Principal>
+            <Dependent Role="Info_patient">
+              <PropertyRef Name="id_blood" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Card_patiet_disease">
+          <End Type="ApmMedicModel.disease" Role="disease" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ApmMedicModel.Card_patiet" Role="Card_patiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="disease">
+              <PropertyRef Name="id_disease" />
+            </Principal>
+            <Dependent Role="Card_patiet">
+              <PropertyRef Name="id_disease" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Card_patiet_Info_doctors">
+          <End Type="ApmMedicModel.Info_doctors" Role="Info_doctors" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ApmMedicModel.Card_patiet" Role="Card_patiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Info_doctors">
+              <PropertyRef Name="id_doctor" />
+            </Principal>
+            <Dependent Role="Card_patiet">
+              <PropertyRef Name="id_doctor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Card_patiet_Info_patient">
+          <End Type="ApmMedicModel.Info_patient" Role="Info_patient" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ApmMedicModel.Card_patiet" Role="Card_patiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Info_patient">
+              <PropertyRef Name="id_patient" />
+            </Principal>
+            <Dependent Role="Card_patiet">
+              <PropertyRef Name="id_patient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Card_patiet_Temperature_sheet">
+          <End Type="ApmMedicModel.Temperature_sheet" Role="Temperature_sheet" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ApmMedicModel.Card_patiet" Role="Card_patiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Temperature_sheet">
+              <PropertyRef Name="id_temp" />
+            </Principal>
+            <Dependent Role="Card_patiet">
+              <PropertyRef Name="id_temp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_doctors_Departments">
+          <End Type="ApmMedicModel.Departments" Role="Departments" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ApmMedicModel.Info_doctors" Role="Info_doctors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="id_department" />
+            </Principal>
+            <Dependent Role="Info_doctors">
+              <PropertyRef Name="id_department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_doctors_Info_reception">
+          <End Type="ApmMedicModel.Info_reception" Role="Info_reception" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ApmMedicModel.Info_doctors" Role="Info_doctors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Info_reception">
+              <PropertyRef Name="id_reception" />
+            </Principal>
+            <Dependent Role="Info_doctors">
+              <PropertyRef Name="id_reception" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_doctors_Posts">
+          <End Type="ApmMedicModel.Posts" Role="Posts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ApmMedicModel.Info_doctors" Role="Info_doctors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posts">
+              <PropertyRef Name="id_post" />
+            </Principal>
+            <Dependent Role="Info_doctors">
+              <PropertyRef Name="id_post" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_doctors_Users">
+          <End Type="ApmMedicModel.Users" Role="Users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ApmMedicModel.Info_doctors" Role="Info_doctors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Info_doctors">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_patient_Sex">
+          <End Type="ApmMedicModel.Sex" Role="Sex" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ApmMedicModel.Info_patient" Role="Info_patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sex">
+              <PropertyRef Name="id_sex" />
+            </Principal>
+            <Dependent Role="Info_patient">
+              <PropertyRef Name="id_sex" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_role">
+          <End Type="ApmMedicModel.role" Role="role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ApmMedicModel.Users" Role="Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ApmMedicModelContainer" CdmEntityContainer="ApmMedicEntities">
+          <EntitySetMapping Name="Bloods">
+            <EntityTypeMapping TypeName="ApmMedicModel.Bloods">
+              <MappingFragment StoreEntitySet="Bloods">
+                <ScalarProperty Name="name_blood" ColumnName="name_blood" />
+                <ScalarProperty Name="id_blood" ColumnName="id_blood" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Card_patiet">
+            <EntityTypeMapping TypeName="ApmMedicModel.Card_patiet">
+              <MappingFragment StoreEntitySet="Card_patiet">
+                <ScalarProperty Name="id_temp" ColumnName="id_temp" />
+                <ScalarProperty Name="id_disease" ColumnName="id_disease" />
+                <ScalarProperty Name="id_patient" ColumnName="id_patient" />
+                <ScalarProperty Name="id_doctor" ColumnName="id_doctor" />
+                <ScalarProperty Name="id_card" ColumnName="id_card" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="ApmMedicModel.Departments">
+              <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="name_department" ColumnName="name_department" />
+                <ScalarProperty Name="id_department" ColumnName="id_department" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="disease">
+            <EntityTypeMapping TypeName="ApmMedicModel.disease">
+              <MappingFragment StoreEntitySet="disease">
+                <ScalarProperty Name="disease1" ColumnName="disease" />
+                <ScalarProperty Name="id_disease" ColumnName="id_disease" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Info_doctors">
+            <EntityTypeMapping TypeName="ApmMedicModel.Info_doctors">
+              <MappingFragment StoreEntitySet="Info_doctors">
+                <ScalarProperty Name="id_department" ColumnName="id_department" />
+                <ScalarProperty Name="id_post" ColumnName="id_post" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="id_reception" ColumnName="id_reception" />
+                <ScalarProperty Name="office_doctor" ColumnName="office_doctor" />
+                <ScalarProperty Name="id_doctor" ColumnName="id_doctor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Info_patient">
+            <EntityTypeMapping TypeName="ApmMedicModel.Info_patient">
+              <MappingFragment StoreEntitySet="Info_patient">
+                <ScalarProperty Name="id_blood" ColumnName="id_blood" />
+                <ScalarProperty Name="id_sex" ColumnName="id_sex" />
+                <ScalarProperty Name="year_patient" ColumnName="year_patient" />
+                <ScalarProperty Name="lastname_patient" ColumnName="lastname_patient" />
+                <ScalarProperty Name="surname_patient" ColumnName="surname_patient" />
+                <ScalarProperty Name="fitstname_patient" ColumnName="fitstname_patient" />
+                <ScalarProperty Name="id_patient" ColumnName="id_patient" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Info_reception">
+            <EntityTypeMapping TypeName="ApmMedicModel.Info_reception">
+              <MappingFragment StoreEntitySet="Info_reception">
+                <ScalarProperty Name="reception_schedule" ColumnName="reception_schedule" />
+                <ScalarProperty Name="id_reception" ColumnName="id_reception" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="ApmMedicModel.Posts">
+              <MappingFragment StoreEntitySet="Posts">
+                <ScalarProperty Name="name_post" ColumnName="name_post" />
+                <ScalarProperty Name="id_post" ColumnName="id_post" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="role">
+            <EntityTypeMapping TypeName="ApmMedicModel.role">
+              <MappingFragment StoreEntitySet="role">
+                <ScalarProperty Name="name_role" ColumnName="name_role" />
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sex">
+            <EntityTypeMapping TypeName="ApmMedicModel.Sex">
+              <MappingFragment StoreEntitySet="Sex">
+                <ScalarProperty Name="name_sex" ColumnName="name_sex" />
+                <ScalarProperty Name="id_sex" ColumnName="id_sex" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Temperature_sheet">
+            <EntityTypeMapping TypeName="ApmMedicModel.Temperature_sheet">
+              <MappingFragment StoreEntitySet="Temperature_sheet">
+                <ScalarProperty Name="weight" ColumnName="weight" />
+                <ScalarProperty Name="pulse_rate" ColumnName="pulse_rate" />
+                <ScalarProperty Name="pressure" ColumnName="pressure" />
+                <ScalarProperty Name="temperature" ColumnName="temperature" />
+                <ScalarProperty Name="id_doctor" ColumnName="id_doctor" />
+                <ScalarProperty Name="Id_patient" ColumnName="Id_patient" />
+                <ScalarProperty Name="id_temp" ColumnName="id_temp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ApmMedicModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="user_othername" ColumnName="user_othername" />
+                <ScalarProperty Name="user_lastname" ColumnName="user_lastname" />
+                <ScalarProperty Name="user_firstname" ColumnName="user_firstname" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

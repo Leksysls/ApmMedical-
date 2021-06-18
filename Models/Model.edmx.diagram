@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="24400d560ecc4919be9e4d8531245134" Name="Diagram1">
+        <EntityTypeShape EntityType="ApmMedicModel.Bloods" Width="1.5" PointX="3" PointY="12.125" />
+        <EntityTypeShape EntityType="ApmMedicModel.Card_patiet" Width="1.5" PointX="7.5" PointY="1.125" />
+        <EntityTypeShape EntityType="ApmMedicModel.Departments" Width="1.5" PointX="3" PointY="9.625" />
+        <EntityTypeShape EntityType="ApmMedicModel.disease" Width="1.5" PointX="5.25" PointY="16.875" />
+        <EntityTypeShape EntityType="ApmMedicModel.Info_doctors" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="ApmMedicModel.Info_patient" Width="1.5" PointX="5.25" PointY="12.625" />
+        <EntityTypeShape EntityType="ApmMedicModel.Info_reception" Width="1.5" PointX="3" PointY="4.875" />
+        <EntityTypeShape EntityType="ApmMedicModel.Posts" Width="1.5" PointX="3" PointY="7.25" />
+        <EntityTypeShape EntityType="ApmMedicModel.role" Width="1.5" PointX="0.75" PointY="1.75" />
+        <EntityTypeShape EntityType="ApmMedicModel.Sex" Width="1.5" PointX="3" PointY="14.5" />
+        <EntityTypeShape EntityType="ApmMedicModel.Temperature_sheet" Width="1.5" PointX="5.25" PointY="5.875" />
+        <EntityTypeShape EntityType="ApmMedicModel.Users" Width="1.5" PointX="3" PointY="1.125" />
+        <AssociationConnector Association="ApmMedicModel.FK_Info_patient_Bloods" />
+        <AssociationConnector Association="ApmMedicModel.FK_Card_patiet_disease" />
+        <AssociationConnector Association="ApmMedicModel.FK_Card_patiet_Info_doctors" />
+        <AssociationConnector Association="ApmMedicModel.FK_Card_patiet_Info_patient" />
+        <AssociationConnector Association="ApmMedicModel.FK_Card_patiet_Temperature_sheet" />
+        <AssociationConnector Association="ApmMedicModel.FK_Info_doctors_Departments" />
+        <AssociationConnector Association="ApmMedicModel.FK_Info_doctors_Info_reception" />
+        <AssociationConnector Association="ApmMedicModel.FK_Info_doctors_Posts" />
+        <AssociationConnector Association="ApmMedicModel.FK_Info_doctors_Users" />
+        <AssociationConnector Association="ApmMedicModel.FK_Info_patient_Sex" />
+        <AssociationConnector Association="ApmMedicModel.FK_Users_role" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
