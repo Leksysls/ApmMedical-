@@ -139,7 +139,7 @@ namespace StringCheckLibTest
             StringCheckClass isLastName = new StringCheckClass();
             bool rezPass = isLastName.PasswordCheck(emptyString);
             ///Assert
-            Assert.IsTrue(rezPass);
+            Assert.IsFalse(rezPass);
 
         }
 

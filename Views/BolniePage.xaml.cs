@@ -114,5 +114,10 @@ namespace ApmMedical.Views
             //    MessageBox.Show(ex.Message);
             //}
         }
+
+        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            PacientDataGrid.ItemsSource = db.context.Info_patient.Where(x => x.lastname_patient.Contains(SearchBox.Text)|| x.fitstname_patient.Contains(SearchBox.Text)|| x.surname_patient.Contains(SearchBox.Text)|| x.Sex.name_sex.Contains(SearchBox.Text)|| x.Bloods.name_blood.Contains(SearchBox.Text)).ToList();
+        }
     }
 }

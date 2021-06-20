@@ -23,10 +23,10 @@ namespace ApmMedical.Models
         public int id_doctor { get; set; }
         public int office_doctor { get; set; }
         public int id_reception { get; set; }
-        public Nullable<int> id_user { get; set; }
+        public int id_user { get; set; }
         public int id_post { get; set; }
         public int id_department { get; set; }
-        public Nullable<int> id_ward { get; set; }
+        public int id_ward { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Card_patiet> Card_patiet { get; set; }

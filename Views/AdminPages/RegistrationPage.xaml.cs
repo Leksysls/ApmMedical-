@@ -163,11 +163,11 @@ namespace ApmMedical.Views
                 {
                     try
                     {
-                        bool result = docObj.AddNewInfoDoctors(
-                            Convert.ToInt32(DepartmentsComboBox.SelectedValue),
-                            Convert.ToInt32(Info_receptionComboBox.SelectedValue),
-                            Convert.ToInt32(PostsComboBox.SelectedValue),
-                            Convert.ToInt32(Info_receptionComboBox.SelectedValue),
+                        //    bool result = docObj.AddNewInfoDoctors(
+                        //        Convert.ToInt32(DepartmentsComboBox.SelectedValue),
+                        //        Convert.ToInt32(Info_receptionComboBox.SelectedValue),
+                        //        Convert.ToInt32(PostsComboBox.SelectedValue),
+                        //        Convert.ToInt32(Info_receptionComboBox.SelectedValue),
                             userObj.AddUser(
                             EmailTextBox.Text,
                             FirstNameTextBox.Text,
@@ -175,7 +175,7 @@ namespace ApmMedical.Views
                             OtherNameTextBox.Text,
                             Convert.ToInt32(RoleComboBox.SelectedValue),
                             PasswordPasswordBox.Password
-                            ));
+                            );
 
                         return true;
                     }

@@ -14,6 +14,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Style="{StaticResource HorizontalStackPanel}" Orientation="Horizontal">
+            <TextBlock Style="{StaticResource MainInfoTextBlock}" TextWrapping="Wrap">Строка поиска:</TextBlock>
+            <TextBox x:Name="SearchBox" Style="{StaticResource SearchButton}" TextChanged="SearchBox_TextChanged" ></TextBox>
             <Button x:Name="AddTemperaturButton" Style="{StaticResource AboveDataGridButton}" Click="AddTemperaturButton_Click"  >Добавить сведенья о пациенте</Button>
             <Button x:Name="DownloadUsersButton" Style="{StaticResource AboveDataGridButton}" >Выгрузить данные в файл</Button>
         </StackPanel>

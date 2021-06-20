@@ -56,5 +56,10 @@ namespace ApmMedical.Views.AdminPages
 
 
         }
+
+        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

@@ -44,13 +44,13 @@
           <Key>
             <PropertyRef Name="id_doctor" />
           </Key>
-          <Property Name="id_doctor" Type="int" Nullable="false" />
+          <Property Name="id_doctor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="office_doctor" Type="int" Nullable="false" />
           <Property Name="id_reception" Type="int" Nullable="false" />
-          <Property Name="id_user" Type="int" />
+          <Property Name="id_user" Type="int" Nullable="false" />
           <Property Name="id_post" Type="int" Nullable="false" />
           <Property Name="id_department" Type="int" Nullable="false" />
-          <Property Name="id_ward" Type="int" />
+          <Property Name="id_ward" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Info_patient">
           <Key>
@@ -222,7 +222,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Info_doctors_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Info_doctors" Type="Self.Info_doctors" Multiplicity="*" />
@@ -445,13 +445,13 @@
           <Key>
             <PropertyRef Name="id_doctor" />
           </Key>
-          <Property Name="id_doctor" Type="Int32" Nullable="false" />
+          <Property Name="id_doctor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="office_doctor" Type="Int32" Nullable="false" />
           <Property Name="id_reception" Type="Int32" Nullable="false" />
-          <Property Name="id_user" Type="Int32" />
+          <Property Name="id_user" Type="Int32" Nullable="false" />
           <Property Name="id_post" Type="Int32" Nullable="false" />
           <Property Name="id_department" Type="Int32" Nullable="false" />
-          <Property Name="id_ward" Type="Int32" />
+          <Property Name="id_ward" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Card_patiet" Relationship="ApmMedicModel.FK_Card_patiet_Info_doctors" FromRole="Info_doctors" ToRole="Card_patiet" />
           <NavigationProperty Name="Departments" Relationship="ApmMedicModel.FK_Info_doctors_Departments" FromRole="Info_doctors" ToRole="Departments" />
           <NavigationProperty Name="Info_reception" Relationship="ApmMedicModel.FK_Info_doctors_Info_reception" FromRole="Info_doctors" ToRole="Info_reception" />
@@ -652,7 +652,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Info_doctors_Users">
-          <End Type="ApmMedicModel.Users" Role="Users" Multiplicity="0..1">
+          <End Type="ApmMedicModel.Users" Role="Users" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Type="ApmMedicModel.Info_doctors" Role="Info_doctors" Multiplicity="*" />
