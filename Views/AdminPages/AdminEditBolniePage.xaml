@@ -53,7 +53,7 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="1" Style="{StaticResource HorizontalStackPanel}" Grid.Column="1">
-            <Button x:Name="SaveProfileButton" Style="{StaticResource RegButton}" >Сохранить</Button>
+            <Button x:Name="SaveProfileButton" Style="{StaticResource RegButton}" Click="SaveProfileButton_Click" >Сохранить</Button>
         </StackPanel>
     </Grid>
 </Page>

@@ -10,8 +10,6 @@
 
     <Grid>
         <StackPanel  HorizontalAlignment="Left" VerticalAlignment="Center">
-            <Button  Style="{StaticResource MainButtonMenu}"   Content="Отделения больницы" x:Name="OtdelButton" Click="OtdelButton_Click"/>
-            <Button  Style="{StaticResource MainButtonMenu}" Content="Палаты" x:Name="PalatiButton" Click="PalatiButton_Click"/>
             <Button  Style="{StaticResource MainButtonMenu}" Content="Пациенты" x:Name="BolnieButton" Click="BolnieButton_Click"/>
             <Button  Style="{StaticResource MainButtonMenu}" Content="Врачи" x:Name="MedicButton" Click="MedicButton_Click"/>
         </StackPanel>

@@ -12,27 +12,18 @@ namespace ApmMedical.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Info_doctors
+    public partial class Wards
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Info_doctors()
+        public Wards()
         {
-            this.Card_patiet = new HashSet<Card_patiet>();
+            this.Departments = new HashSet<Departments>();
         }
     
-        public int id_doctor { get; set; }
-        public int office_doctor { get; set; }
-        public int id_reception { get; set; }
-        public Nullable<int> id_user { get; set; }
-        public int id_post { get; set; }
-        public int id_department { get; set; }
-        public Nullable<int> id_ward { get; set; }
+        public int id_ward { get; set; }
+        public int count_ward { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Card_patiet> Card_patiet { get; set; }
-        public virtual Departments Departments { get; set; }
-        public virtual Info_reception Info_reception { get; set; }
-        public virtual Posts Posts { get; set; }
-        public virtual Users Users { get; set; }
+        public virtual ICollection<Departments> Departments { get; set; }
     }
 }

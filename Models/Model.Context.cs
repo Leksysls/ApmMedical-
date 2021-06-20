@@ -37,5 +37,6 @@ namespace ApmMedical.Models
         public virtual DbSet<Sex> Sex { get; set; }
         public virtual DbSet<Temperature_sheet> Temperature_sheet { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Wards> Wards { get; set; }
     }
 }

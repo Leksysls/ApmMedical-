@@ -65,27 +65,40 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controllers\BloodController.cs" />
+    <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\PacientClass.cs" />
+    <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\PriemController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SexController.cs" />
+    <Compile Include="Controllers\TemperaturController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\WardController.cs" />
     <Compile Include="Models\Bloods.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Departments.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ParticalClasses\Doctors.cs" />
+    <Compile Include="Models\ParticalClasses\UsersClass.cs" />
     <Compile Include="Models\Posts.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ProfileClass.cs" />
     <Compile Include="Models\Sex.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Users.cs">
       <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Wards.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminPages\AddDepartmentPage.xaml.cs">
+      <DependentUpon>AddDepartmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminPages\AddWardsPage.xaml.cs">
+      <DependentUpon>AddWardsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AdminPages\AdminAddPacientPage.xaml.cs">
       <DependentUpon>AdminAddPacientPage.xaml</DependentUpon>
@@ -96,14 +109,17 @@
     <Compile Include="Views\AdminPages\AdminEditGlavVrachPage.xaml.cs">
       <DependentUpon>AdminEditGlavVrachPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AdminPages\AdminRabotnikPage.xaml.cs">
-      <DependentUpon>AdminRabotnikPage.xaml</DependentUpon>
+    <Compile Include="Views\MedicPages\Temperature_sheetPage.xaml.cs">
+      <DependentUpon>Temperature_sheetPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AuthUsersPage.xaml.cs">
       <DependentUpon>AuthUsersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BolniePage.xaml.cs">
       <DependentUpon>BolniePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminPages\DepartmentPage.xaml.cs">
+      <DependentUpon>DepartmentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\GlavVrachPage.xaml.cs">
       <DependentUpon>GlavVrachPage.xaml</DependentUpon>
@@ -114,14 +130,14 @@
     <Compile Include="Views\MedicPage.xaml.cs">
       <DependentUpon>MedicPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\OtdelPage.xaml.cs">
-      <DependentUpon>OtdelPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\RabotnikiPage.xaml.cs">
       <DependentUpon>RabotnikiPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AdminPages\RegistrationPage.xaml.cs">
       <DependentUpon>RegistrationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WardPage.xaml.cs">
+      <DependentUpon>WardPage.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -139,6 +155,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AdminPages\AddDepartmentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminPages\AddWardsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AdminPages\AdminAddPacientPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -151,7 +175,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AdminPages\AdminRabotnikPage.xaml">
+    <Page Include="Views\MedicPages\Temperature_sheetPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -160,6 +184,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\BolniePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminPages\DepartmentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -175,15 +203,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\OtdelPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\RabotnikiPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AdminPages\RegistrationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WardPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -278,7 +306,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Gl.VrachPages\" />
-    <Folder Include="Views\MedicPages\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="StringCheckLib\StringCheckLib.csproj">

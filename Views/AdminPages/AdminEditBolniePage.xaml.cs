@@ -106,38 +106,42 @@ namespace ApmMedical.Views.AdminPages
         /// <param name="sender"></param>
         /// <param name="e"></param>
 
-        //private void SaveProfileButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //         string errors = SetBorders();
-        //        if (errors == String.Empty)
-        //        {
-        //            try
-        //            {
-        //                if (
-        //                    paciObj.UpdatePacientInfo(
-        //                    FirstNameTextBox.Text,
-        //                    LastNameTextBox.Text,
-        //                    OtherNameTextBox.Text,
-        //                    Convert.ToDateTime(BirthDatePicker.SelectedDate), 
-        //                    Convert.ToInt32(GenderComboBox.SelectedValue),
-        //                    Convert.ToInt32(BloodComboBox.SelectedValue)
-        //                    ))
-        //                {
-        //                    MessageBox.Show("Данные успешно обновлены!");
-        //                    this.NavigationService.Navigate(new BolniePage());
-        //                }
-        //            }
-        //            catch (Exception ex)
-        //            {
+        private void SaveProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            string errors = SetBorders();
+            if (errors == String.Empty)
+            {
+                UpdateMedicInfo();
+            }
+            else
+            {
+                MessageBox.Show(errors);
+            }
+        }
 
-        //                MessageBox.Show(ex.Message);
-        //            }
-        //        }
-        //        else
-        //        {
-        //            MessageBox.Show(errors);
-        //        }
-        //}
+
+        /// <summary>
+        /// Обновление данных о Враче
+        /// </summary>
+        private void UpdateMedicInfo()
+        {
+
+            try
+            {
+                if (paciObj.UpdatePacientInfo( FirstNameTextBox.Text, LastNameTextBox.Text, OtherNameTextBox.Text, Convert.ToDateTime(BirthDatePicker.SelectedDate), Convert.ToInt32(GenderComboBox.SelectedValue), Convert.ToInt32(BloodComboBox.SelectedValue), patient))
+                {
+                    MessageBox.Show("Профиль успешно отредактирован!");
+                    this.NavigationService.Navigate(new BolniePage());
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
     }
 }
 

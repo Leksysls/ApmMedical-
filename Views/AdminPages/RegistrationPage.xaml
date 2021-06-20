@@ -15,6 +15,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Style="{StaticResource HorizontalStackPanel}" VerticalAlignment="Center" Orientation="Vertical">
             <StackPanel Style="{StaticResource MainStackPanel}">
@@ -35,6 +36,12 @@
                     <PasswordBox x:Name="RepeatPasswordBox"
                         Style="{StaticResource MainPasswordBox}"
                                  TabIndex="2"></PasswordBox>
+                </StackPanel>
+                <StackPanel Style="{StaticResource HorizontalStackPanel}" HorizontalAlignment="Left" >
+                    <TextBlock Style="{StaticResource SideInfoTextBlock}"><Run Text="Роль:"/></TextBlock>
+                    <ComboBox x:Name="RoleComboBox"
+                        Style="{StaticResource MainComboBox}"
+                              TabIndex="6" />
                 </StackPanel>
             </StackPanel>
         </StackPanel>
@@ -59,17 +66,40 @@
                              TabIndex="5"></TextBox>
                 </StackPanel>
                 <StackPanel Style="{StaticResource HorizontalStackPanel}" HorizontalAlignment="Left" >
-                    <TextBlock Style="{StaticResource SideInfoTextBlock}"><Run Text="Роль:"/></TextBlock>
-                    <ComboBox x:Name="RoleComboBox"
+                    <TextBlock Style="{StaticResource SideInfoTextBlock}"><Run Text="Время приёма:"/></TextBlock>
+                    <ComboBox x:Name="Info_receptionComboBox"
                         Style="{StaticResource MainComboBox}"
-                              SelectionChanged="RoleComboBox_SelectionChanged"
+                              TabIndex="6"/>
+                </StackPanel>
+                
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Style="{StaticResource HorizontalStackPanel}" VerticalAlignment="Center" Orientation="Vertical" Grid.Column="2">
+            <StackPanel Style="{StaticResource MainStackPanel}">
+                
+                
+                <StackPanel Style="{StaticResource HorizontalStackPanel}" HorizontalAlignment="Left" >
+                    <TextBlock Style="{StaticResource SideInfoTextBlock}"><Run Text="Должность:"/></TextBlock>
+                    <ComboBox x:Name="PostsComboBox"
+                        Style="{StaticResource MainComboBox}"
+                              TabIndex="6"/>
+                </StackPanel>
+                <StackPanel Style="{StaticResource HorizontalStackPanel}" HorizontalAlignment="Left" >
+                    <TextBlock Style="{StaticResource SideInfoTextBlock}"><Run Text="Отделение:"/></TextBlock>
+                    <ComboBox x:Name="DepartmentsComboBox"
+                        Style="{StaticResource MainComboBox}"
+                              TabIndex="6"/>
+                </StackPanel>
+                <StackPanel Style="{StaticResource HorizontalStackPanel}" HorizontalAlignment="Left" >
+                    <TextBlock Style="{StaticResource SideInfoTextBlock}"><Run Text="Палата:"/></TextBlock>
+                    <ComboBox x:Name="WardsComboBox"
+                        Style="{StaticResource MainComboBox}"
                               TabIndex="6"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-        
 
-        <StackPanel Style="{StaticResource HorizontalStackPanel}" Grid.Row="1" Grid.Column="1">
+        <StackPanel Style="{StaticResource HorizontalStackPanel}" Grid.Row="1" Grid.Column="2">
             <Button x:Name="RegistrationButton"
                     Style="{StaticResource RegButton}" 
                     TabIndex="7"

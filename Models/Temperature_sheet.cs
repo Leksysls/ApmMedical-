@@ -14,21 +14,12 @@ namespace ApmMedical.Models
     
     public partial class Temperature_sheet
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Temperature_sheet()
-        {
-            this.Card_patiet = new HashSet<Card_patiet>();
-        }
-    
         public int id_temp { get; set; }
-        public Nullable<int> Id_patient { get; set; }
-        public Nullable<int> id_doctor { get; set; }
+        public int Id_patient { get; set; }
+        public int id_doctor { get; set; }
         public string temperature { get; set; }
         public string pressure { get; set; }
         public string pulse_rate { get; set; }
         public string weight { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Card_patiet> Card_patiet { get; set; }
     }
 }

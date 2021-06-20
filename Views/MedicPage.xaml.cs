@@ -92,9 +92,7 @@ namespace ApmMedical.Views
             MessageBoxResult result = MessageBox.Show("Вы действительно хотите удалить строку?", "Удаление", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
-                Users curentTeasher = db.context.Users.Where(x => x.id_user == item.id_user).FirstOrDefault();
                 Users currentUsers = db.context.Users.Where(x => x.id_user == item.id_user).FirstOrDefault();
-                db.context.Users.Remove(curentTeasher);
                 db.context.Users.Remove(currentUsers);
                 db.context.SaveChanges();
                 MessageBox.Show("Данные удалены");

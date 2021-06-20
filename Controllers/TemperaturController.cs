@@ -7,18 +7,19 @@ using System.Threading.Tasks;
 
 namespace ApmMedical.Controllers
 {
-    public class BloodController
+    public class TemperaturController
     {
-        readonly Core db = new Core();
+        Core db = new Core();
         /// <summary>
-        /// Получение данных о Крови
+        /// Получение данных о Температурном листе
         /// </summary>
         /// <returns>
         /// Лист с данными о Крови
         /// </returns>
-        public List<Bloods> GetBloods()
+        public List<Card_patiet> GetTemperature()
         {
-            return db.context.Bloods.ToList();
+            return db.context.Card_patiet.ToList();
+
         }
     }
 }

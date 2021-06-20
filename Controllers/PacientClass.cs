@@ -27,38 +27,19 @@ namespace ApmMedical.Controllers
         /// <summary>
         /// Получение данных о Поле
         /// </summary>
+
         public List<Sex> GetSex()
         {
             return db.context.Sex.ToList();
         }
-        /// <summary>
-        /// Получение данных о Крови
-        /// </summary>
-        public List<Bloods> GetBlood()
+        public List<Sex> GetSexSelected(int sexid)
         {
-            return db.context.Bloods.ToList();
+            return GetSex().Where(x => x.id_sex == sexid).ToList();
         }
+       
 
-        /// <summary>
-        /// Получение ID пользователя
-        /// </summary>
-        /// <param name="userEmail">
-        /// Входная строка содержащая Email пользователя
-        /// </param>
-        /// <returns>
-        /// Возвращает ID пользователя
-        /// </returns>
-        public int GetPacientId(int idpatient)
-        {
-            try
-            {
-                return GetPacient().Where(x => x.id_patient == idpatient).FirstOrDefault().id_patient;
-            }
-            catch
-            {
-                throw new Exception("Ошибка при выводе ID пользователя!");
-            }
-        }
+      
+        
 
 
         /// <summary>

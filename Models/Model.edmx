@@ -20,14 +20,18 @@
           <Property Name="id_doctor" Type="int" />
           <Property Name="id_patient" Type="int" />
           <Property Name="id_disease" Type="int" />
-          <Property Name="id_temp" Type="int" />
+          <Property Name="temperature" Type="nchar" MaxLength="10" />
+          <Property Name="pressure" Type="nchar" MaxLength="10" />
+          <Property Name="pulse_rate" Type="nchar" MaxLength="10" />
+          <Property Name="weight" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Departments">
           <Key>
             <PropertyRef Name="id_department" />
           </Key>
-          <Property Name="id_department" Type="int" Nullable="false" />
+          <Property Name="id_department" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name_department" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_ward" Type="int" />
         </EntityType>
         <EntityType Name="disease">
           <Key>
@@ -46,12 +50,13 @@
           <Property Name="id_user" Type="int" />
           <Property Name="id_post" Type="int" Nullable="false" />
           <Property Name="id_department" Type="int" Nullable="false" />
+          <Property Name="id_ward" Type="int" />
         </EntityType>
         <EntityType Name="Info_patient">
           <Key>
             <PropertyRef Name="id_patient" />
           </Key>
-          <Property Name="id_patient" Type="int" Nullable="false" />
+          <Property Name="id_patient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="fitstname_patient" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="surname_patient" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="lastname_patient" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -92,12 +97,12 @@
             <PropertyRef Name="id_temp" />
           </Key>
           <Property Name="id_temp" Type="int" Nullable="false" />
-          <Property Name="Id_patient" Type="int" />
-          <Property Name="id_doctor" Type="int" />
-          <Property Name="temperature" Type="nchar" MaxLength="10" />
-          <Property Name="pressure" Type="nchar" MaxLength="10" />
-          <Property Name="pulse_rate" Type="nchar" MaxLength="10" />
-          <Property Name="weight" Type="nchar" MaxLength="10" />
+          <Property Name="Id_patient" Type="int" Nullable="false" />
+          <Property Name="id_doctor" Type="int" Nullable="false" />
+          <Property Name="temperature" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="pressure" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="pulse_rate" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="weight" Type="nchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -110,6 +115,13 @@
           <Property Name="user_firstname" Type="nvarchar" MaxLength="50" />
           <Property Name="user_lastname" Type="nvarchar" MaxLength="50" />
           <Property Name="user_othername" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Wards">
+          <Key>
+            <PropertyRef Name="id_ward" />
+          </Key>
+          <Property Name="id_ward" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="count_ward" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Card_patiet_disease">
           <End Role="disease" Type="Self.disease" Multiplicity="0..1">
@@ -153,17 +165,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Card_patiet_Temperature_sheet">
-          <End Role="Temperature_sheet" Type="Self.Temperature_sheet" Multiplicity="0..1">
+        <Association Name="FK_Departments_Wards">
+          <End Role="Wards" Type="Self.Wards" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Card_patiet" Type="Self.Card_patiet" Multiplicity="*" />
+          <End Role="Departments" Type="Self.Departments" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Temperature_sheet">
-              <PropertyRef Name="id_temp" />
+            <Principal Role="Wards">
+              <PropertyRef Name="id_ward" />
             </Principal>
-            <Dependent Role="Card_patiet">
-              <PropertyRef Name="id_temp" />
+            <Dependent Role="Departments">
+              <PropertyRef Name="id_ward" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -278,6 +290,7 @@
           <EntitySet Name="Sex" EntityType="Self.Sex" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Temperature_sheet" EntityType="Self.Temperature_sheet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Wards" EntityType="Self.Wards" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Card_patiet_disease" Association="Self.FK_Card_patiet_disease">
             <End Role="disease" EntitySet="disease" />
             <End Role="Card_patiet" EntitySet="Card_patiet" />
@@ -290,9 +303,9 @@
             <End Role="Info_patient" EntitySet="Info_patient" />
             <End Role="Card_patiet" EntitySet="Card_patiet" />
           </AssociationSet>
-          <AssociationSet Name="FK_Card_patiet_Temperature_sheet" Association="Self.FK_Card_patiet_Temperature_sheet">
-            <End Role="Temperature_sheet" EntitySet="Temperature_sheet" />
-            <End Role="Card_patiet" EntitySet="Card_patiet" />
+          <AssociationSet Name="FK_Departments_Wards" Association="Self.FK_Departments_Wards">
+            <End Role="Wards" EntitySet="Wards" />
+            <End Role="Departments" EntitySet="Departments" />
           </AssociationSet>
           <AssociationSet Name="FK_Info_doctors_Departments" Association="Self.FK_Info_doctors_Departments">
             <End Role="Departments" EntitySet="Departments" />
@@ -340,6 +353,7 @@
           <EntitySet Name="Sex" EntityType="ApmMedicModel.Sex" />
           <EntitySet Name="Temperature_sheet" EntityType="ApmMedicModel.Temperature_sheet" />
           <EntitySet Name="Users" EntityType="ApmMedicModel.Users" />
+          <EntitySet Name="Wards" EntityType="ApmMedicModel.Wards" />
           <AssociationSet Name="FK_Info_patient_Bloods" Association="ApmMedicModel.FK_Info_patient_Bloods">
             <End Role="Bloods" EntitySet="Bloods" />
             <End Role="Info_patient" EntitySet="Info_patient" />
@@ -356,9 +370,9 @@
             <End Role="Info_patient" EntitySet="Info_patient" />
             <End Role="Card_patiet" EntitySet="Card_patiet" />
           </AssociationSet>
-          <AssociationSet Name="FK_Card_patiet_Temperature_sheet" Association="ApmMedicModel.FK_Card_patiet_Temperature_sheet">
-            <End Role="Temperature_sheet" EntitySet="Temperature_sheet" />
-            <End Role="Card_patiet" EntitySet="Card_patiet" />
+          <AssociationSet Name="FK_Departments_Wards" Association="ApmMedicModel.FK_Departments_Wards">
+            <End Role="Wards" EntitySet="Wards" />
+            <End Role="Departments" EntitySet="Departments" />
           </AssociationSet>
           <AssociationSet Name="FK_Info_doctors_Departments" Association="ApmMedicModel.FK_Info_doctors_Departments">
             <End Role="Departments" EntitySet="Departments" />
@@ -401,18 +415,22 @@
           <Property Name="id_doctor" Type="Int32" />
           <Property Name="id_patient" Type="Int32" />
           <Property Name="id_disease" Type="Int32" />
-          <Property Name="id_temp" Type="Int32" />
+          <Property Name="temperature" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="pressure" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="pulse_rate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="weight" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="disease" Relationship="ApmMedicModel.FK_Card_patiet_disease" FromRole="Card_patiet" ToRole="disease" />
           <NavigationProperty Name="Info_doctors" Relationship="ApmMedicModel.FK_Card_patiet_Info_doctors" FromRole="Card_patiet" ToRole="Info_doctors" />
           <NavigationProperty Name="Info_patient" Relationship="ApmMedicModel.FK_Card_patiet_Info_patient" FromRole="Card_patiet" ToRole="Info_patient" />
-          <NavigationProperty Name="Temperature_sheet" Relationship="ApmMedicModel.FK_Card_patiet_Temperature_sheet" FromRole="Card_patiet" ToRole="Temperature_sheet" />
         </EntityType>
         <EntityType Name="Departments">
           <Key>
             <PropertyRef Name="id_department" />
           </Key>
-          <Property Name="id_department" Type="Int32" Nullable="false" />
+          <Property Name="id_department" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name_department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_ward" Type="Int32" />
+          <NavigationProperty Name="Wards" Relationship="ApmMedicModel.FK_Departments_Wards" FromRole="Departments" ToRole="Wards" />
           <NavigationProperty Name="Info_doctors" Relationship="ApmMedicModel.FK_Info_doctors_Departments" FromRole="Departments" ToRole="Info_doctors" />
         </EntityType>
         <EntityType Name="disease">
@@ -433,6 +451,7 @@
           <Property Name="id_user" Type="Int32" />
           <Property Name="id_post" Type="Int32" Nullable="false" />
           <Property Name="id_department" Type="Int32" Nullable="false" />
+          <Property Name="id_ward" Type="Int32" />
           <NavigationProperty Name="Card_patiet" Relationship="ApmMedicModel.FK_Card_patiet_Info_doctors" FromRole="Info_doctors" ToRole="Card_patiet" />
           <NavigationProperty Name="Departments" Relationship="ApmMedicModel.FK_Info_doctors_Departments" FromRole="Info_doctors" ToRole="Departments" />
           <NavigationProperty Name="Info_reception" Relationship="ApmMedicModel.FK_Info_doctors_Info_reception" FromRole="Info_doctors" ToRole="Info_reception" />
@@ -443,7 +462,7 @@
           <Key>
             <PropertyRef Name="id_patient" />
           </Key>
-          <Property Name="id_patient" Type="Int32" Nullable="false" />
+          <Property Name="id_patient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="fitstname_patient" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="surname_patient" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="lastname_patient" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -491,13 +510,12 @@
             <PropertyRef Name="id_temp" />
           </Key>
           <Property Name="id_temp" Type="Int32" Nullable="false" />
-          <Property Name="Id_patient" Type="Int32" />
-          <Property Name="id_doctor" Type="Int32" />
-          <Property Name="temperature" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="pressure" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="pulse_rate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="weight" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Card_patiet" Relationship="ApmMedicModel.FK_Card_patiet_Temperature_sheet" FromRole="Temperature_sheet" ToRole="Card_patiet" />
+          <Property Name="Id_patient" Type="Int32" Nullable="false" />
+          <Property Name="id_doctor" Type="Int32" Nullable="false" />
+          <Property Name="temperature" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="pressure" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="pulse_rate" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="weight" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -512,6 +530,14 @@
           <Property Name="user_othername" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Info_doctors" Relationship="ApmMedicModel.FK_Info_doctors_Users" FromRole="Users" ToRole="Info_doctors" />
           <NavigationProperty Name="role" Relationship="ApmMedicModel.FK_Users_role" FromRole="Users" ToRole="role" />
+        </EntityType>
+        <EntityType Name="Wards">
+          <Key>
+            <PropertyRef Name="id_ward" />
+          </Key>
+          <Property Name="id_ward" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="count_ward" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Departments" Relationship="ApmMedicModel.FK_Departments_Wards" FromRole="Wards" ToRole="Departments" />
         </EntityType>
         <Association Name="FK_Info_patient_Bloods">
           <End Type="ApmMedicModel.Bloods" Role="Bloods" Multiplicity="0..1">
@@ -569,17 +595,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Card_patiet_Temperature_sheet">
-          <End Type="ApmMedicModel.Temperature_sheet" Role="Temperature_sheet" Multiplicity="0..1">
+        <Association Name="FK_Departments_Wards">
+          <End Type="ApmMedicModel.Wards" Role="Wards" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="ApmMedicModel.Card_patiet" Role="Card_patiet" Multiplicity="*" />
+          <End Type="ApmMedicModel.Departments" Role="Departments" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Temperature_sheet">
-              <PropertyRef Name="id_temp" />
+            <Principal Role="Wards">
+              <PropertyRef Name="id_ward" />
             </Principal>
-            <Dependent Role="Card_patiet">
-              <PropertyRef Name="id_temp" />
+            <Dependent Role="Departments">
+              <PropertyRef Name="id_ward" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -684,7 +710,10 @@
           <EntitySetMapping Name="Card_patiet">
             <EntityTypeMapping TypeName="ApmMedicModel.Card_patiet">
               <MappingFragment StoreEntitySet="Card_patiet">
-                <ScalarProperty Name="id_temp" ColumnName="id_temp" />
+                <ScalarProperty Name="weight" ColumnName="weight" />
+                <ScalarProperty Name="pulse_rate" ColumnName="pulse_rate" />
+                <ScalarProperty Name="pressure" ColumnName="pressure" />
+                <ScalarProperty Name="temperature" ColumnName="temperature" />
                 <ScalarProperty Name="id_disease" ColumnName="id_disease" />
                 <ScalarProperty Name="id_patient" ColumnName="id_patient" />
                 <ScalarProperty Name="id_doctor" ColumnName="id_doctor" />
@@ -695,6 +724,7 @@
           <EntitySetMapping Name="Departments">
             <EntityTypeMapping TypeName="ApmMedicModel.Departments">
               <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="id_ward" ColumnName="id_ward" />
                 <ScalarProperty Name="name_department" ColumnName="name_department" />
                 <ScalarProperty Name="id_department" ColumnName="id_department" />
               </MappingFragment>
@@ -711,6 +741,7 @@
           <EntitySetMapping Name="Info_doctors">
             <EntityTypeMapping TypeName="ApmMedicModel.Info_doctors">
               <MappingFragment StoreEntitySet="Info_doctors">
+                <ScalarProperty Name="id_ward" ColumnName="id_ward" />
                 <ScalarProperty Name="id_department" ColumnName="id_department" />
                 <ScalarProperty Name="id_post" ColumnName="id_post" />
                 <ScalarProperty Name="id_user" ColumnName="id_user" />
@@ -788,6 +819,14 @@
                 <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="id_role" ColumnName="id_role" />
                 <ScalarProperty Name="id_user" ColumnName="id_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Wards">
+            <EntityTypeMapping TypeName="ApmMedicModel.Wards">
+              <MappingFragment StoreEntitySet="Wards">
+                <ScalarProperty Name="count_ward" ColumnName="count_ward" />
+                <ScalarProperty Name="id_ward" ColumnName="id_ward" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
