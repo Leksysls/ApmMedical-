@@ -59,15 +59,12 @@ namespace ApmMedical.Controllers
                 db.context.SaveChanges();
 
                 return GetUserId(userEmail);
-                return newUser.id_user;
             }
             catch
             {
                 throw new Exception("Произошла ошибка при добалении нового пользователя!");
             }
         }
-
-        
 
         /// <summary>
         /// Проверка Email на совпадение в БД

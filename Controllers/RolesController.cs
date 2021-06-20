@@ -16,10 +16,6 @@ namespace ApmMedical.Controllers
             int roles = db.context.Users.AsNoTracking().FirstOrDefault(u => (u.login == loginUser)).id_role;
             return roles;
         }
-
-        
-      
-
         /// <summary>
         /// Получение данных о ролях
         /// </summary>
@@ -30,8 +26,6 @@ namespace ApmMedical.Controllers
         {
             return db.context.role.ToList();
         }
-
-
 
 
     }

@@ -1,5 +1,4 @@
-﻿using ApmMedical.Views.AdminPages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,7 +27,7 @@ namespace ApmMedical.Views
 
         private void OtdelButton_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new DepartmentPage());
+            this.NavigationService.Navigate(new OtdelPage());
         }
 
        
@@ -43,9 +42,6 @@ namespace ApmMedical.Views
             this.NavigationService.Navigate(new MedicPage());
         }
 
-        private void TemperatrueButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new Temperature_sheetPage());
-        }
+
     }
 }

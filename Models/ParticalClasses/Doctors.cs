@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ApmMedical.Models.ParticalClasses
 {
-    class UsersClass
+    public partial class Doctors
     {
+       // public string DoctorFIO => $"{firstname_doctor } {surname_docotr} {lastname_doctor}";
     }
 }

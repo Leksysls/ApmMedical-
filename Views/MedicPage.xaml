@@ -16,17 +16,17 @@
         <StackPanel Style="{StaticResource HorizontalStackPanel}" Orientation="Horizontal">
             <TextBlock Style="{StaticResource MainInfoTextBlock}" TextWrapping="Wrap">Фильтр по роли пользователей:</TextBlock>
             <ComboBox x:Name="RoleComboBox" Style="{StaticResource MainComboBox}" SelectionChanged="RoleComboBox_SelectionChanged" ></ComboBox>
-            <Button x:Name="AddUserButton" Style="{StaticResource AboveDataGridButton}" Click="AddUserButton_Click" >Добавить Доктора</Button>
+            <Button x:Name="AddUserButton" Style="{StaticResource AboveDataGridButton}" Click="AddUserButton_Click" >Добавить пользователя</Button>
             <Button x:Name="DownloadUsersButton" Style="{StaticResource AboveDataGridButton}" Click="DownloadUsersButton_Click" >Выгрузить данные в файл</Button>
         </StackPanel>
         <DataGrid Grid.Row="1" x:Name="UsersDataGrid" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Email" Binding="{Binding Users.login}" Width="Auto"/>
-                <DataGridTextColumn Header="Имя" Binding="{Binding Users.user_firstname}" Width="*"/>
-                <DataGridTextColumn Header="Фамилия" Binding="{Binding Users.user_lastname}" Width="*"/>
-                <DataGridTextColumn Header="Отчество" Binding="{Binding Users.user_othername}" Width="*"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding login}" Width="Auto"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding user_firstname}" Width="*"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding user_lastname}" Width="*"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding user_othername}" Width="*"/>
                 <DataGridTextColumn Header="Кабинет врача" Binding="{Binding office_doctor}" Width="*"/>
-                <DataGridTextColumn Header="Роль" Binding="{Binding Users.role.name_role}" Width="*"/>
+                <DataGridTextColumn Header="Роль" Binding="{Binding role.name_role}" Width="*"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

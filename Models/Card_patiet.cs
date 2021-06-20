@@ -18,13 +18,11 @@ namespace ApmMedical.Models
         public Nullable<int> id_doctor { get; set; }
         public Nullable<int> id_patient { get; set; }
         public Nullable<int> id_disease { get; set; }
-        public string temperature { get; set; }
-        public string pressure { get; set; }
-        public string pulse_rate { get; set; }
-        public string weight { get; set; }
+        public Nullable<int> id_temp { get; set; }
     
         public virtual disease disease { get; set; }
         public virtual Info_doctors Info_doctors { get; set; }
         public virtual Info_patient Info_patient { get; set; }
+        public virtual Temperature_sheet Temperature_sheet { get; set; }
     }
 }

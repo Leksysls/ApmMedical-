@@ -76,7 +76,7 @@ namespace StringCheckLib
             {
                 try
                 {
-                    using (StreamWriter wr = new StreamWriter(nameFile,true,Encoding.UTF8))
+                    using (StreamWriter wr = new StreamWriter(nameFile))
                     {
 
                         wr.WriteLine(String.Join(";", data.Keys.ToList()));

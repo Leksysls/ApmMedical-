@@ -25,12 +25,6 @@ namespace ApmMedical.Views
         readonly RolesController roleObj = new RolesController();
         readonly StringCheckClass strObj = new StringCheckClass();
         readonly UsersController userObj = new UsersController();
-        readonly DepartmentsController depaerObj = new DepartmentsController();
-        readonly WardController wardObj = new WardController();
-        readonly PostController postrObj = new PostController();
-        readonly PriemController priemObj = new PriemController();
-        readonly DoctorController docObj = new DoctorController();
-
         public RegistrationPage()
         {
             InitializeComponent();
@@ -40,30 +34,25 @@ namespace ApmMedical.Views
             RoleComboBox.SelectedValuePath = "id_role";
             RoleComboBox.SelectedIndex = 0;
 
-            DepartmentsComboBox.ItemsSource = depaerObj.GetDepartments();
-            DepartmentsComboBox.DisplayMemberPath = "name_department"; 
-            DepartmentsComboBox.SelectedValuePath = "id_department";
-            DepartmentsComboBox.SelectedIndex = 0;
-
-            Info_receptionComboBox.ItemsSource = priemObj.GetSchedule();
-            Info_receptionComboBox.DisplayMemberPath = "reception_schedule";
-            Info_receptionComboBox.SelectedValuePath = "id_reception";
-            Info_receptionComboBox.SelectedIndex = 0;
-
-            PostsComboBox.ItemsSource = postrObj.GetPosts();
-            PostsComboBox.DisplayMemberPath = "name_post";
-            PostsComboBox.SelectedValuePath = "id_post";
-            PostsComboBox.SelectedIndex = 0;
-
-            WardsComboBox.ItemsSource = wardObj.GetWards();
-            WardsComboBox.DisplayMemberPath = "count_ward";
-            WardsComboBox.SelectedValuePath = "id_ward";
-            WardsComboBox.SelectedIndex = 0;
-
         }
 
 
-
+        /// <summary>
+        /// Действие на изменении выбранного значения в RoleComboBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RoleComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //if (RoleComboBox.SelectedValue.ToString() == "3")
+            //{
+            //    RunnerInfoStackPanel.Visibility = Visibility.Visible;
+            //}
+            //else
+            //{
+            //    RunnerInfoStackPanel.Visibility = Visibility.Collapsed;
+            //}
+        }
 
         private string SetBorders()
         {
@@ -163,19 +152,13 @@ namespace ApmMedical.Views
                 {
                     try
                     {
-                        bool result = docObj.AddNewInfoDoctors(
-                            Convert.ToInt32(DepartmentsComboBox.SelectedValue),
-                            Convert.ToInt32(Info_receptionComboBox.SelectedValue),
-                            Convert.ToInt32(PostsComboBox.SelectedValue),
-                            Convert.ToInt32(Info_receptionComboBox.SelectedValue),
-                            userObj.AddUser(
+                        int result = userObj.AddUser(
                             EmailTextBox.Text,
                             FirstNameTextBox.Text,
                             LastNameTextBox.Text,
                             OtherNameTextBox.Text,
                             Convert.ToInt32(RoleComboBox.SelectedValue),
-                            PasswordPasswordBox.Password
-                            ));
+                            PasswordPasswordBox.Password);
 
                         return true;
                     }
@@ -198,7 +181,7 @@ namespace ApmMedical.Views
             }
         }
 
-       
+
     }
 }
 

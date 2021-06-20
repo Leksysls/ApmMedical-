@@ -11,10 +11,10 @@ namespace ApmMedical.Controllers
     {
         readonly Core db = new Core();
         /// <summary>
-        /// Получение данных о Крови
+        /// Получение данных о полах
         /// </summary>
         /// <returns>
-        /// Лист с данными о Крови
+        /// Лист с данными о полах
         /// </returns>
         public List<Bloods> GetBloods()
         {

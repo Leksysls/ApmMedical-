@@ -22,9 +22,7 @@ namespace ApmMedical.Models
     
         public int id_department { get; set; }
         public string name_department { get; set; }
-        public Nullable<int> id_ward { get; set; }
     
-        public virtual Wards Wards { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Info_doctors> Info_doctors { get; set; }
     }

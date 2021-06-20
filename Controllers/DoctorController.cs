@@ -13,7 +13,7 @@ namespace ApmMedical.Controllers
 
 
         readonly Core db = new Core();
-
+        readonly UsersController userObj = new UsersController();
 
 
         /// <summary>
@@ -22,41 +22,34 @@ namespace ApmMedical.Controllers
         /// <returns>
         /// Возвращает лист с данными о Врачах
         /// </returns>
-        public List<Info_doctors> GetDoctors()
+        public List<Users> GetDoctors()
+        {
+            return db.context.Users.ToList();
+        }
+        /// <summary>
+        /// Получение данных о Врачах
+        /// </summary>
+        /// <returns>
+        /// Возвращает лист с данными о Врачах
+        /// </returns>
+        public List<Info_doctors> GetOfice()
         {
             return db.context.Info_doctors.ToList();
         }
-
-
-        public bool AddNewInfoDoctors(int iddeparts, int idreception, int idpost, int idward, int idUser)
+       
+        
+        /// <summary>
+        /// Получение данных о докторах
+        /// </summary>
+        /// <returns>
+        /// Лист с данными о докторах
+        /// </returns>
+        public List<Info_doctors> GetRunners()
         {
-            try
-            {
-                Info_doctors InfoDoctors = new Info_doctors
-                {
-                    id_department = iddeparts,
-                    id_reception = idreception,
-                    id_post = idpost,
-                    id_ward = idward,
-                    id_user = idUser,
-                };
-
-                db.context.Info_doctors.Add(InfoDoctors);
-                db.context.SaveChanges();
-
-                return true;
-            }
-            catch
-            {
-                throw new Exception("Произошла ошибка при добавлении нового преподавателя");
-            }
+            return db.context.Info_doctors.ToList();
         }
-
-
-
-
-
-
+        
+        
 
     }
 }

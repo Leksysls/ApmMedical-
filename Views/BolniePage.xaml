@@ -17,7 +17,7 @@
             <TextBlock Style="{StaticResource MainInfoTextBlock}" TextWrapping="Wrap">Фильтр по роли Пациентов:</TextBlock>
             <ComboBox x:Name="RoleComboBox" Style="{StaticResource MainComboBox}" SelectionChanged="RoleComboBox_SelectionChanged"></ComboBox>
             <Button x:Name="AddUserButton" Style="{StaticResource AboveDataGridButton}" Click="AddPacientButton_Click" >Добавить Пациента</Button>
-            <Button x:Name="DownloadUsersButton" Style="{StaticResource AboveDataGridButton}" Click="DownloadUsersButton_Click"   >Выгрузить данные в файл</Button>
+            <Button x:Name="DownloadUsersButton" Style="{StaticResource AboveDataGridButton}"   >Выгрузить данные в файл</Button>
         </StackPanel>
         <DataGrid Grid.Row="1" x:Name="PacientDataGrid" IsReadOnly="True" AutoGenerateColumns="False" >
             <DataGrid.Columns>

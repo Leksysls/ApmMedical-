@@ -83,7 +83,7 @@ namespace ApmMedical.Views.AdminPages
         
 
         /// <summary>
-        /// Нажатие на кнопку сохранения данных о Враче
+        /// Нажатие на кнопку сохранения данных о пользователе
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -92,7 +92,7 @@ namespace ApmMedical.Views.AdminPages
             string errors = SetBorders();
             if (errors == String.Empty)
             {
-                UpdateMedicInfo();
+                UpdateRunnerInfo();
                 
                 
             }
@@ -103,9 +103,9 @@ namespace ApmMedical.Views.AdminPages
         }
 
         /// <summary>
-        /// Обновление данных о Враче
+        /// Обновление данных о бегуне
         /// </summary>
-        private void UpdateMedicInfo()
+        private void UpdateRunnerInfo()
         {
 
             try
